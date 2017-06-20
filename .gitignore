@@ -1,3 +1,6 @@
 /build/
 /.idea/
 /target/
+/.project
+/.classpath
+/.settings/
