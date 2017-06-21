@@ -1,20 +1,15 @@
 package com.config;
 
-import com.domain.User;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMessage;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
-import java.util.concurrent.TimeUnit;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Created by zengjie on 17/6/20.
@@ -40,6 +35,21 @@ public class MyConfiguration {
                 registry.addMapping("/api/**");
             }
         };
+    }
+
+    @Bean
+    public FreeMarkerView viewConfigurer(){
+        return new MyFreeMarkerView();
+    }
+
+    class MyFreeMarkerView extends  FreeMarkerView{
+        private static final String CONTEXT_PATH = "base";
+
+        @Override
+        protected void exposeHelpers(Map<String, Object> model, HttpServletRequest request) throws Exception {
+            model.put(CONTEXT_PATH, request.getContextPath());
+            super.exposeHelpers(model, request);
+        }
     }
 
     /* @Bean

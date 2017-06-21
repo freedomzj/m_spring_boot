@@ -15,6 +15,7 @@ public class MainController {
 
     @RequestMapping(value={"/index","/"}, method= RequestMethod.GET)
     public String main(Model model, HttpServletRequest request){
+        request.setAttribute("basePath",request.getContextPath());
         model.addAttribute("username","zengjie");
         model.addAttribute("dec","这是一个逗逼的世界");
         return "main";

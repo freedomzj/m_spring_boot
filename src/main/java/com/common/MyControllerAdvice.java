@@ -21,6 +21,8 @@ public class MyControllerAdvice extends ResponseEntityExceptionHandler {
         return new ResponseEntity(new CustomErrorType(status.value(), ex.getMessage()), status);
     }
 
+
+
     private HttpStatus getStatus(HttpServletRequest request) {
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
         if (statusCode == null) {
