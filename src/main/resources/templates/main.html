@@ -3,8 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>spring-boot in action</title>
+    <link href="css/extra.css" rel="stylesheet" />
+    <script href="js/jquery-1.9.1.min.js" type="text/javascript"></script>
 </head>
 <body>
-sdddddddddddddddd ${username} ${dec}  webPath ${basePath}
+sdddddddddddddddd ${username} ${dec}  webPath ${Request.basePath}
+
+<div>
+    <p>list 迭代</p>
+    <ul class=" ">
+        <#list users as u>
+            <li>${u.username}</li>
+            <li>${u.password}</li>
+        </#list>
+    </ul>
+
+    <#list dataMap?keys as testKey>
+        < option value="${testKey}" >
+
+        <#list testMap.get(testKey) as u>
+            <li>${u.username}</li>
+            <li>${u.password}</li>
+        </#list>
+        </option>
+    </#list>
+
+    <p>map 迭代</p>
+    <ul>
+        <#list dataMap.keySet() as testKey>
+            <p> ${testKey} </p>
+        </#list>
+    </ul>
+</div>
 </body>
 </html>

@@ -20,7 +20,6 @@ public class CommonInterceptor  implements HandlerInterceptor {
         String serverName = httpServletRequest.getServerName();
         int port = httpServletRequest.getServerPort();
         String basePath = scheme + "://" + serverName + ":" + port + path;
-        System.out.print(basePath);
         httpServletRequest.setAttribute("basePath", basePath);
         return true;
     }
