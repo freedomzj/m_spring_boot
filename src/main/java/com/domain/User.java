@@ -11,6 +11,8 @@ public class User {
 
     private String password;
 
+    private Department department;
+
 
     public  User(){
 
@@ -46,4 +48,11 @@ public class User {
     }
 
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

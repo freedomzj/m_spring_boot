@@ -2,6 +2,8 @@ package com.controller;
 
 import com.domain.Customer;
 import com.domain.User;
+import com.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,14 +19,21 @@ import java.util.List;
 @RequestMapping(value="/user")
 public class MyRestController {
 
-    @RequestMapping(value="/{userId}", method= RequestMethod.GET)
-    public User getUser(@PathVariable Long userId) {
-        User user=new User();
-        user.setId(userId);
-        user.setPassword("123456");
-        user.setUsername("zengjie");
+    @Autowired
+    private UserMapper userMapper;
+
+    @RequestMapping(value="/{username}", method= RequestMethod.GET)
+    public User getUser(@PathVariable String username) {
+        User user=userMapper.findByName(username);
         return user;
     }
+
+    @RequestMapping(value="add/{username}/{password}",method = RequestMethod.GET)
+    public String add(@PathVariable String username,@PathVariable String password){
+        userMapper.insert(username,password);
+        return "操作成功添加"+username;
+    }
+
 
     @RequestMapping(value="/{userId}/customers", method=RequestMethod.GET)
     List<Customer> getUserCustomers(@PathVariable Long userId) {
@@ -43,10 +52,9 @@ public class MyRestController {
         return customers;
     }
 
-    @RequestMapping(value="/{userId}", method=RequestMethod.DELETE)
-    public User deleteUser(@PathVariable Long userId) {
-        User user=new User();
-        user.setId(userId);
+    @RequestMapping(value="/dep/{userId}", method=RequestMethod.GET)
+    public User findUser(@PathVariable Long userId) {
+        User user=userMapper.findDepartment(userId);
         return user;
     }
 

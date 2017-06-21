@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+    <resultMap id="userMap" type="com.domain.User">
+        <id column="id" jdbcType="INTEGER" property="id"></id>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <association property="department" javaType="com.domain.Department"  >
+            <id column="id" jdbcType="INTEGER" property="id"></id>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, username, password
+    </sql>
+
+    <select id="findDepartment" resultMap="userMap">
+        SELECT  u.id,u.username,d.name FROM  user LEFT JOIN department d on d.id=u.did WHERE  u.id=#{id}
+    </select>
+</mapper>
