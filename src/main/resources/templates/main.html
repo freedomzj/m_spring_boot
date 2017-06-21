@@ -12,28 +12,20 @@ sdddddddddddddddd ${username} ${dec}  webPath ${Request.basePath}
 <div>
     <p>list 迭代</p>
     <ul class=" ">
+        <#if users??  && (users?size > 0) >
         <#list users as u>
             <li>${u.username}</li>
             <li>${u.password}</li>
         </#list>
+        </#if>
     </ul>
 
     <#list dataMap?keys as testKey>
         < option value="${testKey}" >
-
-        <#list testMap.get(testKey) as u>
-            <li>${u.username}</li>
-            <li>${u.password}</li>
-        </#list>
+        < option value="${dataMap[testKey]}" >
         </option>
     </#list>
 
-    <p>map 迭代</p>
-    <ul>
-        <#list dataMap.keySet() as testKey>
-            <p> ${testKey} </p>
-        </#list>
-    </ul>
 </div>
 </body>
 </html>
