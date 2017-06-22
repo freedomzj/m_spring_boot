@@ -1,9 +1,13 @@
 package com.controller;
 
+import com.domain.City;
 import com.domain.Customer;
 import com.domain.User;
 import com.mapper.UserMapper;
+import com.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,8 +26,13 @@ public class MyRestController extends  BaseCtl {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CityRepository cityRepository;
+
     @RequestMapping(value="/{username}", method= RequestMethod.GET)
     public User getUser(@PathVariable String username) {
+        Page<City> page= cityRepository.findAll(new PageRequest(0,2));
+        City city=cityRepository.findName("北京");
         User user=userMapper.findByName(username);
         return user;
     }

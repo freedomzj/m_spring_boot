@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class CommonInterceptorConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new CommonInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new CommonInterceptor()).addPathPatterns("/**").excludePathPatterns("/app");
         registry.addInterceptor(new AuthorizationInterceptor()).addPathPatterns("/app/**");
     }
 
