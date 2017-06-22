@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * Created by zengjie on 17/6/22.
@@ -33,6 +34,19 @@ public class MyBatisConfig {
                 .username(jdbcConfig.userName)
                 .password(jdbcConfig.password).build();
     }
+
+   /* @Bean
+    public PageHelper pageHelper() {
+        logger.info("注册MyBatis分页插件PageHelper");
+        PageHelper pageHelper = new PageHelper();
+        Properties p = new Properties();
+        p.setProperty("offsetAsPageNum", "true");
+        p.setProperty("rowBoundsWithCount", "true");
+        p.setProperty("reasonable", "true");
+        pageHelper.setProperties(p);
+        return pageHelper;
+    }*/
+
 
     @PropertySource(value = "application.properties")
     @Component

@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value="/user")
-public class MyRestController {
+public class MyRestController extends  BaseCtl {
 
     @Autowired
     private UserMapper userMapper;
