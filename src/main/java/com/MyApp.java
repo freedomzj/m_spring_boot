@@ -10,10 +10,11 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication // same as @Configuration @EnableAutoConfiguration @ComponentScan
 //@ComponentScan("com.*")   //相对于package根目录而言 不需要此扫描
-@MapperScan("com.mapper.SqlMapper")
+@MapperScan("com.mapper")
 public class MyApp{
 
-    public static void main(String[] args) {
+    //对应纯注解模式下 mybatis 不需要 @bean MyBatisConfig 与 @bean SessionFactoryConfig
+     public static void main(String[] args) {
         SpringApplication.run(MyApp.class, args);
     }
 

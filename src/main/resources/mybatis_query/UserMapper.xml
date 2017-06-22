@@ -15,6 +15,6 @@
     </sql>
 
     <select id="findDepartment" resultMap="userMap">
-        SELECT  u.id,u.username,d.name FROM  user LEFT JOIN department d on d.id=u.did WHERE  u.id=#{id}
+        SELECT  u.id,u.username,d.name FROM  user u LEFT JOIN department d on d.id=u.d_id WHERE  u.id=#{id}
     </select>
 </mapper>
