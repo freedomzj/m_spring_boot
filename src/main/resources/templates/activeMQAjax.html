@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base href="${Request.basePath}">
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/amq_jquery_adapter.js"></script>
+    <script type="text/javascript" src="js/amq.js"></script>
+    <link href="css/extra.css" rel="stylesheet" />
+    <script type="text/javascript">
+        var amq = org.activemq.Amq;
+        amq.init({
+            uri: 'active/amq',
+            logging: true,
+            timeout: 20
+        });
+
+
+        var myHandler =
+        {
+            rcvMessage: function(message)
+            {
+                alert("received "+message);
+            }
+        };
+
+        sendMessage=function () {
+            var msg=$("#msg").val();
+            amq.sendMessage("测试消息机制Q",msg);
+
+        }
+
+      //  amq.addListener("admin","消息回调",myHandler.rcvMessage);
+        amq.addListener( "admin", "消息回调", myHandler.rcvMessage, { selector:"identifier='TEST'" } );
+    </script>
+</head>
+
+<body>
+    <input id="msg" class="form-control" type="text" placeholder="输入消息内容"/>
+    <button class="btn btn-default" onclick="sendMessage()">发送消息QAQ</button>
+</body>
+</html>
