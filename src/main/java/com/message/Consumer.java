@@ -14,4 +14,9 @@ public class Consumer {
         System.out.println(text);
     }
 
+    @JmsListener(destination = "zengjie发布任务队列")
+    public void receiveZQueue(String text) {
+        System.out.println(text);
+    }
+
 }
