@@ -4,7 +4,7 @@ import com.domain.ResultModel;
 import com.domain.ResultStatus;
 import com.domain.TokenModel;
 import com.domain.User;
-import com.mapper.TokenMapper;
+import com.mapper.TokenManager;
 import com.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class TokenCtl {
 	private UserMapper userMapper;
 
 	@Autowired
-	private TokenMapper tokenMapper;
+	private TokenManager tokenManager;
 	
 	@RequestMapping(value="test",method=RequestMethod.GET)
 	@ResponseBody
@@ -40,7 +40,7 @@ public class TokenCtl {
 					HttpStatus.NOT_FOUND);
 		}
 		// 生成一个token，保存用户登录状态
-		TokenModel model = tokenMapper.createToken(1);
+		TokenModel model = tokenManager.createToken(1);
 		return new ResponseEntity<ResultModel>(ResultModel.ok(model), HttpStatus.OK);
 	}
 

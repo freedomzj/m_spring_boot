@@ -1,13 +1,13 @@
 package com.mapper;
 
+
 import com.domain.TokenModel;
+import org.springframework.stereotype.Component;
 
-/**
- * Created by zengjie on 17/6/22.
- */
-public interface TokenMapper {
-
-    /**
+@Component
+public interface TokenManager {
+	
+	/**
      * 创建一个token关联上指定用户
      * @param userId 指定用户的id
      * @return 生成的token
