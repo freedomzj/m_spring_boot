@@ -1,4 +1,4 @@
-package com.mapper;
+package com.repository;
 
 
 import com.domain.TokenModel;

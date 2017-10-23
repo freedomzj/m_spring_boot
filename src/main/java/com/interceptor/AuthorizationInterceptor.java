@@ -1,19 +1,23 @@
 package com.interceptor;
 
-import com.annotation.Authorization;
-import com.common.Constants;
-import com.domain.TokenModel;
-import com.mapper.TokenManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Method;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import com.annotation.Authorization;
+import com.common.Constants;
+import com.domain.TokenModel;
+import com.repository.TokenManager;
 
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
+	@Qualifier("redisTokenManager")
 	@Autowired
 	private TokenManager tokenManager;
 

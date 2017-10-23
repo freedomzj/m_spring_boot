@@ -1,8 +1,9 @@
-package com.mapper;
+package com.repository;
 
 import com.common.CommUtil;
 import com.common.Constants;
 import com.domain.TokenModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,9 +20,13 @@ import java.util.concurrent.TimeUnit;
  */
 @SuppressWarnings("all")
 @Component
-
 public class RedisTokenManager implements TokenManager {
 
+	
+	public RedisTokenManager(){
+		System.out.println("init+++++++++++ RedisTokenManager+++++++++++");
+	}
+	
     @Qualifier("redisTemplate")
 	@Autowired
     private RedisTemplate<String, String> redis;

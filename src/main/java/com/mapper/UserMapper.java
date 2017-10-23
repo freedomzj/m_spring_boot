@@ -2,6 +2,7 @@ package com.mapper;
 
 import com.domain.PersistentLogins;
 import com.domain.User;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -4,9 +4,11 @@ import com.domain.ResultModel;
 import com.domain.ResultStatus;
 import com.domain.TokenModel;
 import com.domain.User;
-import com.mapper.TokenManager;
 import com.mapper.UserMapper;
+import com.repository.TokenManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
@@ -19,6 +21,7 @@ public class TokenCtl {
 	@Autowired
 	private UserMapper userMapper;
 
+	@Qualifier("redisTokenManager")
 	@Autowired
 	private TokenManager tokenManager;
 	
