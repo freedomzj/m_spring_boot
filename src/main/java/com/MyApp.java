@@ -36,7 +36,8 @@ public class MyApp{
 
     @Bean
     public Queue queue() {
-        return new ActiveMQQueue("zengjie发布任务队列");
+        return new ActiveMQQueue("book:querytask");
     }
+    
 
 }

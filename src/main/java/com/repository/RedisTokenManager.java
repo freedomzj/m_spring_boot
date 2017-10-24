@@ -23,10 +23,6 @@ import java.util.concurrent.TimeUnit;
 public class RedisTokenManager implements TokenManager {
 
 	
-	public RedisTokenManager(){
-		System.out.println("init+++++++++++ RedisTokenManager+++++++++++");
-	}
-	
     @Qualifier("redisTemplate")
 	@Autowired
     private RedisTemplate<String, String> redis;

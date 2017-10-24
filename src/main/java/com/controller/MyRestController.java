@@ -1,21 +1,25 @@
 package com.controller;
 
-import com.domain.City;
-import com.domain.Customer;
-import com.domain.User;
-import com.mapper.UserMapper;
-import com.repository.CityRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.domain.City;
+import com.domain.Customer;
+import com.domain.Explore;
+import com.domain.User;
+import com.mapper.UserMapper;
+import com.repository.CityRepository;
 
 /**
  * Created by zengjie on 17/6/20.
@@ -29,6 +33,9 @@ public class MyRestController extends  BaseCtl {
 
     @Autowired
     private CityRepository cityRepository;
+    
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @RequestMapping(value="/{username}", method= RequestMethod.GET)
     public User getUser(@PathVariable String username) {
@@ -71,6 +78,27 @@ public class MyRestController extends  BaseCtl {
     @RequestMapping(value = "test")
     public String jsonTest(){
         return "大家好啊我是json字符串";
+    }
+    
+    @RequestMapping( value="explore/list/{explore}", method=RequestMethod.GET)
+    public List<Explore> list(@PathVariable String explore){
+    	final Query query =new Query();
+		Criteria criteria =new Criteria();
+//		if(key!=null && key.length()==10){
+			criteria.and("explore").is(explore);
+//			query.skip(curPage-1);
+//			query.limit(pageSize);
+//		}else{
+//			criteria.and("explore").regex(key);
+//			query.limit(1000);
+//		}
+//	     criteria.wshere(key);
+//	     criteria.and("key").alike(sample)
+		query.addCriteria(criteria);
+//		query.maxScan(1000);
+		System.out.println(mongoTemplate.getDb().getCollection("explore"));
+		List<Explore> list= mongoTemplate.find(query,Explore.class);
+		return list;
     }
 
 }

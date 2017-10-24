@@ -9,7 +9,7 @@
     <script type="text/javascript" src="js/amq.js"></script>
     <link href="css/extra.css" rel="stylesheet" />
     <script type="text/javascript">
-        var amq = org.activemq.Amq;
+      /*  var amq = org.activemq.Amq;
         amq.init({
             uri: 'active/amq',
             logging: true,
@@ -24,15 +24,27 @@
                 alert("received "+message);
             }
         };
-
+*/
         sendMessage=function () {
             var msg=$("#msg").val();
-            amq.sendMessage("测试消息机制Q",msg);
+//             amq.sendMessage("测试消息机制Q",msg);
+            $.ajax({
+    			type: "GET",
+    			url: "active/send/"+msg,
+    			dataType:"json",
+    			success:function(data){
+    				alert(data);
+    				$("#msg").val("");
+    			}
+//     			error:function(data){
+//     				alert("请重新发送！");
+//     			}
+    		});
 
         }
 
       //  amq.addListener("admin","消息回调",myHandler.rcvMessage);
-        amq.addListener( "admin", "消息回调", myHandler.rcvMessage, { selector:"identifier='TEST'" } );
+       // amq.addListener( "admin", "消息回调", myHandler.rcvMessage, { selector:"identifier='TEST'" } );
     </script>
 </head>
 
