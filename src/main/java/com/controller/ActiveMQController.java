@@ -95,17 +95,6 @@ public class ActiveMQController {
 	@RequestMapping(value = "send/{msg}", method = RequestMethod.GET)
 	@ResponseBody
 	public String sendMessage(@PathVariable String msg) {
-		// 测试 MQ 并发
-		// 1.同时发送2000条消息 开启监听回调 MongoDB查询 耗时未算
-		// 2.MongoDB 数据key 智齿探索器(1-500万) 
-		// 3.封装查询key 为智齿探索器(1-2000)
-		// 4.前端ajax轮询 每5秒调用一次
-		// 5.对查询的结果进行json文本存储在服务器
-		// 6.前端需要结果对文本进行读取 
-		//--------------low爆的分割线-------------------
-		//1.客户端发送一个查询请求 (消费者 consumers) 
-		//2.生成一个队列			(消费者开始需求 consumers do work )
-		//3.客户关注这个队列 		(内容提供者mongeDb supplier )
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(20);// 开启20个线程同时发送
 		for (int i = 0; i < 2000; i++) {
 			executor.execute(new Runnable() {

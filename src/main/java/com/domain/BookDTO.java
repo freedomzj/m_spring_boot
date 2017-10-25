@@ -2,28 +2,54 @@ package com.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "book")
-public class BookDTO {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Document(collection = "book")
+public class BookDto {
+
+	@JsonIgnore
+	public String _id;
+	
+	@JsonProperty(value = "Key")
 	public String key;
 
+	@JsonProperty(value = "BookType")  
 	public String bookType;
 
+	@JsonProperty(value = "Category")  
 	public String category;
 
+	@JsonProperty(value = "Index")  
 	public Integer index;
 
+	@JsonProperty(value = "Isbn")  
 	public String isbn;
 
+	@JsonProperty(value = "Title")  
 	public String title;
 
+	@JsonProperty(value = "PublishDate")  
 	public String publishDate;
 
+	@JsonProperty(value = "Publisher")  
 	public String publisher;
 
+	@JsonProperty(value = "Author")  
 	public String author;
 
-	public String brief;
+	@JsonProperty(value = "Prief")  
+	public String prief;
+	
+	
+
+	public String get_id() {
+		return _id;
+	}
+
+	public void set_id(String _id) {
+		this._id = _id;
+	}
 
 	public String getKey() {
 		return key;
@@ -89,6 +115,8 @@ public class BookDTO {
 		this.publisher = publisher;
 	}
 
+	
+	
 	public String getAuthor() {
 		return author;
 	}
@@ -97,13 +125,17 @@ public class BookDTO {
 		this.author = author;
 	}
 
-	public String getBrief() {
-		return brief;
+	public String getPrief() {
+		return prief;
 	}
 
-	public void setBrief(String brief) {
-		this.brief = brief;
+	public void setPrief(String prief) {
+		this.prief = prief;
 	}
+
+	
+	
+
 	
 	
 	

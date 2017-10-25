@@ -26,7 +26,7 @@ import com.repository.CityRepository;
  */
 @RestController
 @RequestMapping(value="/user")
-public class MyRestController extends  BaseCtl {
+public class UserController extends  BaseCtl {
 
     @Autowired
     private UserMapper userMapper;
@@ -85,8 +85,10 @@ public class MyRestController extends  BaseCtl {
     	final Query query =new Query();
 		Criteria criteria =new Criteria();
 //		if(key!=null && key.length()==10){
-			criteria.and("explore").is(explore);
+			//criteria.and("explore").is(explore).orOperator(new Criteria().and("explore").is("智齿探索器1"));
+		criteria.orOperator(Criteria.where("explore").is("智齿探索器2"),Criteria.where("explore").is("智齿探索器1"));
 //			query.skip(curPage-1);
+		
 //			query.limit(pageSize);
 //		}else{
 //			criteria.and("explore").regex(key);

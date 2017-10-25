@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="crown")
+@Document(collection="book")
 public class Book {
 	
 	private String key;
